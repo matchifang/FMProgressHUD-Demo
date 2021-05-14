@@ -876,7 +876,7 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
             
             // Fade in delayed if a grace time is set
             // An image will be dismissed automatically. Thus pass the duration as userInfo.
-            if (self.graceTimeInterval > 0.0 && self.backgroundView.alpha == 0.0f) {
+            if (self.graceTimeInterval > 0.0 && self.backgroundView.alpha == 0.0f) { ////
                 strongSelf.graceTimer = [NSTimer timerWithTimeInterval:self.graceTimeInterval target:strongSelf selector:@selector(fadeIn:) userInfo:@(duration) repeats:NO];
                 [[NSRunLoop mainRunLoop] addTimer:strongSelf.graceTimer forMode:NSRunLoopCommonModes];
             } else {
@@ -889,22 +889,6 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
 - (void)fadeIn:(id)data {
     // Update the HUDs frame to the new content and position HUD
     [self updateHUDFrame];
-//    [self subviews]
-//    <__NSArrayM 0x600001bea640>(
-//    <UIView: 0x7f8e7c412cd0; frame = (0 0; 375 812); alpha = 0; autoresize = W+H; layer = <CALayer: 0x6000015937c0>>,
-//    <UIVisualEffectView: 0x7f8e7c408380; frame = (-88 -50; 176 100); clipsToBounds = YES; autoresize = LM+RM+TM+BM; layer = <CALayer: 0x600001590000>> clientRequestedContentView effect=none
-//    )
-    
-//    [[self subviews][0] subviews]
-//    <__NSArray0 0x7fff8002e6e0>(
-//
-//    )
-    
-//    [[self subviews][1] subviews]
-//    <__NSArrayM 0x600001bffea0>(
-//    <_UIVisualEffectContentView: 0x7f8e7c6066f0; frame = (0 0; 176 100); clipsToBounds = YES; autoresize = W+H; layer = <CALayer: 0x6000015e6de0>>
-//    )
-
     [self positionHUD:nil];
     
     // Update accessibility as well as user interaction

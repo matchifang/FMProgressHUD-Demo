@@ -89,7 +89,7 @@ class ViewController: UIViewController {
     }()
     
     lazy var maskTypeSegmentedControl: UISegmentedControl = {
-        let control = UISegmentedControl(items: ["None", "Clear", "Black", "Gradient", "Custom"])
+        let control = UISegmentedControl(items: ["Clear", "Black", "Custom"])
         control.translatesAutoresizingMaskIntoConstraints = false
         control.addTarget(self, action: #selector(self.maskTypeSegmentedControlValueChanged(_:)), for: .valueChanged)
         control.selectedSegmentIndex = 0
@@ -110,6 +110,12 @@ class ViewController: UIViewController {
         return textField
     }()
     
+    lazy var ringThicknessLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Ring Thickness: 2"
+        return label
+    }()
+    
     lazy var ringThicknessView: UIStackView = {
         let slider = UISlider()
         slider.minimumValue = 1
@@ -118,12 +124,49 @@ class ViewController: UIViewController {
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.addTarget(self, action: #selector(ringThicknessChanged(_:)), for: .valueChanged)
         
-        let label = UILabel()
-        label.text = "Ring Thickness"
-        
-        let stackView = UIStackView(arrangedSubviews: [label, slider])
+        let stackView = UIStackView(arrangedSubviews: [ringThicknessLabel, slider])
         stackView.axis = .horizontal
         stackView.distribution = .fill
+        stackView.spacing = 15
+        
+        return stackView
+    }()
+    
+    lazy var ringRadiusLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Ring Radius: 18"
+        return label
+    }()
+    
+    lazy var ringRadiusView: UIStackView = {
+        let slider = UISlider()
+        slider.minimumValue = 15
+        slider.maximumValue = 25
+        slider.value = 18
+        slider.translatesAutoresizingMaskIntoConstraints = false
+        slider.addTarget(self, action: #selector(ringRadiusChanged(_:)), for: .valueChanged)
+        
+        let stackView = UIStackView(arrangedSubviews: [ringRadiusLabel, slider])
+        stackView.axis = .horizontal
+        stackView.distribution = .fill
+        stackView.spacing = 15
+        
+        return stackView
+    }()
+    
+    lazy var allowTouchView: UIStackView = {
+        let allowTouchSwitch = UISwitch()
+        allowTouchSwitch.isOn = false
+        allowTouchSwitch.translatesAutoresizingMaskIntoConstraints = false
+        allowTouchSwitch.addTarget(self, action: #selector(allowTouchSwitchValueChanged(_:)), for: .valueChanged)
+        
+        let label = UILabel()
+        label.text = "Allow touch through"
+        
+        let stackView = UIStackView(arrangedSubviews: [label, allowTouchSwitch])
+        stackView.axis = .horizontal
+        stackView.distribution = .fill
+        stackView.spacing = 15
         
         return stackView
     }()
@@ -146,6 +189,8 @@ class ViewController: UIViewController {
         stackView.addArrangedSubview(styleSegmentedControl)
         stackView.addArrangedSubview(maskTypeSegmentedControl)
         stackView.addArrangedSubview(ringThicknessView)
+        stackView.addArrangedSubview(ringRadiusView)
+        stackView.addArrangedSubview(allowTouchView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         return stackView
@@ -156,113 +201,95 @@ class ViewController: UIViewController {
     
     // MARK - ViewController Lifecycle
     
-//    override func loadView() {
-//        <#code#>
-//    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        configureView()
-        NewHUD.show()
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-//        let sliderConstraints = [
-//            ringThicknessSlider.widthAnchor.constraint(equalTo: view.widthAnchor),
-//            ringThicknessSlider.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-//        ]
-//
-//        let labelConstraints = labels.enumerated().map { (i, label) -> [NSLayoutConstraint] in
-//            let pct = CGFloat(i)/CGFloat(labels.count-1)
-//            let centerX = (view.bounds.size.width - 2 * self.ringThicknessSlider.thumbIndent) * pct + self.ringThicknessSlider.thumbIndent
-//            return [
-//                label.centerXAnchor.constraint(equalTo: ringThicknessSlider.leftAnchor, constant: centerX),
-//                label.bottomAnchor.constraint(equalTo: ringThicknessSlider.topAnchor, constant: 0),
-//            ]
-//        }.flatMap { $0 }
-//
-//        view.removeConstraints(view.constraints)
-//
-//        (sliderConstraints + labelConstraints).forEach {
-//            view.addConstraint($0)
-//            $0.isActive = true
-//        }
-    }
-    
-    func configureView() {
         view.addSubview(stackView)
-//        for label in labels {
-//            view.addSubview(label)
-//        }
-//        view.addSubview(ringThicknessSlider)
-//        view.addSubview(animationTypeSegmentedControl)
         NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-//            animationTypeSegmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 300)
+            stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
+            stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15),
+            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
+            stackView.bottomAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15),
         ])
     }
     
     @objc func animationTypeSegmentedControlValueChanged(_ sender: UISegmentedControl) {
-        NewHUD.animationType = sender.selectedSegmentIndex == 0 ? .flat : .native
+        FMProgressHUD.animationType = sender.selectedSegmentIndex == 0 ? .flat : .native
     }
     
     @objc func styleSegmentedControlValueChanged(_ sender: UISegmentedControl) {
-        NewHUD.style = sender.selectedSegmentIndex == 0 ? .light : .dark
+        FMProgressHUD.style = sender.selectedSegmentIndex == 0 ? .light : .dark
     }
     
     @objc func maskTypeSegmentedControlValueChanged(_ sender: UISegmentedControl) {
-        // TODO
+        switch sender.selectedSegmentIndex {
+        case 0: FMProgressHUD.maskType = .clear
+        case 1: FMProgressHUD.maskType = .black
+        case 2: FMProgressHUD.maskType = .custom
+        default: FMProgressHUD.maskType = .clear
+        }
     }
     
     @objc func ringThicknessChanged(_ sender: UISlider) {
-        NewHUD.ringThickness = CGFloat(sender.value)
+        let roundedValue = sender.value.rounded()
+        sender.value = roundedValue
+        FMProgressHUD.ringThickness = CGFloat(roundedValue)
+        ringThicknessLabel.text = "Ring Thickness: \(Int(roundedValue))"
+    }
+    
+    @objc func ringRadiusChanged(_ sender: UISlider) {
+        let roundedValue = sender.value.rounded()
+        sender.value = roundedValue
+        FMProgressHUD.ringRadius = CGFloat(roundedValue)
+        ringRadiusLabel.text = "Ring Radius: \(Int(roundedValue))"
+    }
+    
+    @objc func allowTouchSwitchValueChanged(_ sender: UISwitch) {
+        FMProgressHUD.disableTouch = !sender.isOn
     }
     
     // MARK - Show different HUDs
     
     @objc func showNormalButtonTapped() {
-        NewHUD.show()
+        FMProgressHUD.show()
     }
     
     @objc func showWithStatusButtonTapped() {
-        NewHUD.show(status: "Status")
+        FMProgressHUD.show(status: "Status")
     }
     
     @objc func showWithProgressButtonTapped() {
         if progress <= 1 {
             perform(#selector(showWithProgressButtonTapped), with: nil, afterDelay: 0.1)
-            NewHUD.show(progress: progress, status: "Progress")
-//            SVProgressHUD.showProgress(Float(progress), status: "Loading with progress")
+            FMProgressHUD.show(progress: progress, status: "Progress")
+            //            SVProgressHUD.showProgress(Float(progress), status: "Loading with progress")
             self.progress += 0.05
         } else {
-            NewHUD.dismiss()
-//            SVProgressHUD.dismiss()
+            FMProgressHUD.dismiss()
+            //            SVProgressHUD.dismiss()
             progress = 0
         }
     }
     
     @objc func showInfoWithStatusButtonTapped() {
-        NewHUD.showInfo(status: "Info")
-//        SVProgressHUD.showInfo(withStatus: "Info")
+        FMProgressHUD.showInfo(status: "Info")
+        //        SVProgressHUD.showInfo(withStatus: "Info")
     }
     
     @objc func showSuccessWithStatusButtonTapped() {
-        NewHUD.showSuccess(status: "Success")
-//        SVProgressHUD.showSuccess(withStatus: "success")
+        FMProgressHUD.showSuccess(status: "Success")
+        //        SVProgressHUD.showSuccess(withStatus: "success")
     }
     
     @objc func showErrorWithStatusButtonTapped() {
-        NewHUD.showError(status: "Error")
-//        SVProgressHUD.showError(withStatus: "error")
+        FMProgressHUD.showError(status: "Error")
+        //        SVProgressHUD.showError(withStatus: "error")
     }
     
     @objc func dismissButtonTapped() {
         SVProgressHUD.dismiss()
-        NewHUD.dismiss()
+        FMProgressHUD.dismiss()
         progress = 0
     }
     

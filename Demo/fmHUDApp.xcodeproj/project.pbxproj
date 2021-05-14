@@ -19,10 +19,10 @@
 		AD07372526483191004FE74F /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD07371F26483191004FE74F /* SVIndefiniteAnimatedView.m */; };
 		AD07372626483191004FE74F /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AD07372026483191004FE74F /* SVProgressHUD.bundle */; };
 		AD07372A264831FC004FE74F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD073729264831FB004FE74F /* QuartzCore.framework */; };
-		AD0737452648812C004FE74F /* FMProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0737442648812C004FE74F /* FMProgressHUD.swift */; };
+		AD0737452648812C004FE74F /* FMProgressHUD2.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0737442648812C004FE74F /* FMProgressHUD2.swift */; };
 		AD07374926489D07004FE74F /* FMProgressAnimatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD07374826489D07004FE74F /* FMProgressAnimatedView.swift */; };
 		AD07374C2648A298004FE74F /* FMIndefiniteAnimatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD07374B2648A298004FE74F /* FMIndefiniteAnimatedView.swift */; };
-		AD07374F264AD4BE004FE74F /* NewHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD07374E264AD4BE004FE74F /* NewHUD.swift */; };
+		AD07374F264AD4BE004FE74F /* FMProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD07374E264AD4BE004FE74F /* FMProgressHUD.swift */; };
 		ADBF404C264D39B4006DA63F /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBF404B264D39B4006DA63F /* CustomSlider.swift */; };
 /* End PBXBuildFile section */
 
@@ -47,10 +47,10 @@
 		AD07372026483191004FE74F /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		AD07372126483191004FE74F /* SVProgressAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressAnimatedView.h; sourceTree = "<group>"; };
 		AD073729264831FB004FE74F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		AD0737442648812C004FE74F /* FMProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FMProgressHUD.swift; sourceTree = "<group>"; };
+		AD0737442648812C004FE74F /* FMProgressHUD2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FMProgressHUD2.swift; sourceTree = "<group>"; };
 		AD07374826489D07004FE74F /* FMProgressAnimatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FMProgressAnimatedView.swift; sourceTree = "<group>"; };
 		AD07374B2648A298004FE74F /* FMIndefiniteAnimatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FMIndefiniteAnimatedView.swift; sourceTree = "<group>"; };
-		AD07374E264AD4BE004FE74F /* NewHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHUD.swift; sourceTree = "<group>"; };
+		AD07374E264AD4BE004FE74F /* FMProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FMProgressHUD.swift; sourceTree = "<group>"; };
 		ADBF404B264D39B4006DA63F /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,10 +129,10 @@
 		AD07374326488114004FE74F /* FMProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
-				AD0737442648812C004FE74F /* FMProgressHUD.swift */,
+				AD0737442648812C004FE74F /* FMProgressHUD2.swift */,
 				AD07374826489D07004FE74F /* FMProgressAnimatedView.swift */,
 				AD07374B2648A298004FE74F /* FMIndefiniteAnimatedView.swift */,
-				AD07374E264AD4BE004FE74F /* NewHUD.swift */,
+				AD07374E264AD4BE004FE74F /* FMProgressHUD.swift */,
 			);
 			path = FMProgressHUD;
 			sourceTree = "<group>";
@@ -225,9 +225,9 @@
 				AD07372526483191004FE74F /* SVIndefiniteAnimatedView.m in Sources */,
 				ADBF404C264D39B4006DA63F /* CustomSlider.swift in Sources */,
 				AD07374926489D07004FE74F /* FMProgressAnimatedView.swift in Sources */,
-				AD07374F264AD4BE004FE74F /* NewHUD.swift in Sources */,
+				AD07374F264AD4BE004FE74F /* FMProgressHUD.swift in Sources */,
 				AD07372426483191004FE74F /* SVProgressHUD.m in Sources */,
-				AD0737452648812C004FE74F /* FMProgressHUD.swift in Sources */,
+				AD0737452648812C004FE74F /* FMProgressHUD2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
