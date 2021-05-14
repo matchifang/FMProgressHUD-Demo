@@ -10,6 +10,7 @@ import Foundation
 
 // TODO: What should happen if keyboard shows?
 // TODO: Should things in the background be disabled?
+//  - user can set enable/disable
 // TODO: show hudView inside a containerView that is the size of the whole screen
 // TODO: Progress disappears just before showing completion
 
@@ -159,6 +160,7 @@ class NewHUD: UIView {
         hudView.translatesAutoresizingMaskIntoConstraints = false
         hudView.layer.cornerRadius = NewHUD.cornerRadius
         hudView.backgroundColor = .systemGreen
+        hudView.alpha = 0
         
         hudView.contentView.addSubview(stackView)
         let inset = NewHUD.cornerRadius / 2
@@ -223,6 +225,7 @@ class NewHUD: UIView {
     
     private var containerView: UIView {
         let containerView = UIView(frame: UIScreen.main.bounds)
+        containerView.backgroundColor = .systemPink
         //        containerView.addSubview(hudView)
         //        NSLayoutConstraint.activate([
         //            hudView.centerYAnchor.constraint(equalTo: containerView.layoutMarginsGuide.centerYAnchor),
@@ -268,6 +271,9 @@ class NewHUD: UIView {
     
     // MARK: Instance methods
     
+    private var fadeInAnimationDuration: TimeInterval = 0.15
+    private var fadeOutAnimationDuration: TimeInterval = 0.15
+    
     private func addHudView() {
         guard let frontWindow = frontWindow else { return }
         
@@ -276,6 +282,38 @@ class NewHUD: UIView {
             hudView.centerXAnchor.constraint(equalTo: frontWindow.centerXAnchor),
             hudView.centerYAnchor.constraint(equalTo: frontWindow.centerYAnchor),
         ])
+        
+        if hudView.alpha == 0 {
+            for view in hudView.contentView.subviews {
+                view.alpha = 0
+            }
+            
+            hudView.transform = hudView.transform.scaledBy(x: 1.3, y: 1.3)
+            let animationsBlock = { [weak self] in
+                guard let self = self else { return }
+                self.hudView.transform = CGAffineTransform.identity
+                self.fadeInEffects()
+            }
+            UIView.animate(withDuration: fadeInAnimationDuration,
+                           delay: 0,
+                           options: [.allowUserInteraction, .curveEaseIn, .beginFromCurrentState],
+                           animations: animationsBlock,
+                           completion: nil)
+        }
+    }
+    
+    private func fadeInEffects() {
+        hudView.alpha = 1
+        for view in hudView.contentView.subviews {
+            view.alpha = 1
+        }
+    }
+    
+    private func fadeOutEffects() {
+        hudView.alpha = 0
+        for view in hudView.contentView.subviews {
+            view.alpha = 0
+        }
     }
     
     private func show(status: String? = nil) {
@@ -309,11 +347,7 @@ class NewHUD: UIView {
         
         if progress >= 0 {
             stackView.addArrangedSubview(backgroundRingView)
-//            stackView.addArrangedSubview(backgroundRingView)
-//            CATransaction.begin()
-//            CATransaction.setDisableActions(true)
             ringView.strokeEnd = progress
-//            CATransaction.commit()
         } else {
             stackView.addArrangedSubview(spinner)
         }
@@ -328,11 +362,24 @@ class NewHUD: UIView {
     
     func dismiss() {
         if hudView.superview != nil {
-            hudView.removeFromSuperview()
-            for view in stackView.arrangedSubviews {
-                view.removeFromSuperview()
+            let animationsBlock = { [weak self] in
+                guard let self = self else { return }
+                self.hudView.transform.scaledBy(x: 1/1.3, y: 1/1.3)
+                self.fadeOutEffects()
             }
-            ringView.strokeEnd = 0
+            let completionBlock = { [weak self] (_: Bool) in
+                guard let self = self else { return }
+                self.hudView.removeFromSuperview()
+                for view in self.stackView.arrangedSubviews {
+                    view.removeFromSuperview()
+                }
+                self.ringView.strokeEnd = 0
+            }
+            UIView.animate(withDuration: fadeOutAnimationDuration,
+                           delay: 0,
+                           options: [.allowUserInteraction, .curveEaseIn, .beginFromCurrentState],
+                           animations: animationsBlock,
+                           completion: completionBlock)
         }
     }
     
