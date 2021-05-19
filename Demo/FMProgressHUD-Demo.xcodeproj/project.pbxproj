@@ -20,22 +20,10 @@
 		AD09D78F2653FF5F00768062 /* FMProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD09D7892653FF5F00768062 /* FMProgressHUD.swift */; };
 		AD09D7912653FF5F00768062 /* FMLoadingSpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD09D78B2653FF5F00768062 /* FMLoadingSpinnerView.swift */; };
 		AD09D7922653FF5F00768062 /* FMTouchBlockingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD09D78C2653FF5F00768062 /* FMTouchBlockingView.swift */; };
-		AD09D7A226551D9300768062 /* FMProgressHUDDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD09D7A126551D9300768062 /* FMProgressHUDDemoUITests.swift */; };
-		AD09D7AC2655225900768062 /* MainPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD09D7AB2655225900768062 /* MainPage.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		AD09D7A426551D9300768062 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = AD0736E0264816C5004FE74F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = AD0736E7264816C6004FE74F;
-			remoteInfo = fmHUDApp;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		AD0736E8264816C6004FE74F /* fmHUDApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fmHUDApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD0736E8264816C6004FE74F /* FMProgressHUD-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FMProgressHUD-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD0736EB264816C6004FE74F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD0736ED264816C6004FE74F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		AD0736EF264816C6004FE74F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -43,7 +31,6 @@
 		AD0736F4264816C7004FE74F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD0736F7264816C7004FE74F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD0736F9264816C7004FE74F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AD0737032648260E004FE74F /* fmHUDApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "fmHUDApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		AD073729264831FB004FE74F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		AD09D77E2651CEC600768062 /* UIColor+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Utilities.swift"; sourceTree = "<group>"; };
 		AD09D7872653FF5F00768062 /* FMKeyboardStateListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMKeyboardStateListener.swift; sourceTree = "<group>"; };
@@ -51,10 +38,6 @@
 		AD09D7892653FF5F00768062 /* FMProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMProgressHUD.swift; sourceTree = "<group>"; };
 		AD09D78B2653FF5F00768062 /* FMLoadingSpinnerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMLoadingSpinnerView.swift; sourceTree = "<group>"; };
 		AD09D78C2653FF5F00768062 /* FMTouchBlockingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMTouchBlockingView.swift; sourceTree = "<group>"; };
-		AD09D79F26551D9300768062 /* FMProgressHUDDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FMProgressHUDDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		AD09D7A126551D9300768062 /* FMProgressHUDDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FMProgressHUDDemoUITests.swift; sourceTree = "<group>"; };
-		AD09D7A326551D9300768062 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AD09D7AB2655225900768062 /* MainPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,21 +49,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AD09D79C26551D9300768062 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		AD0736DF264816C5004FE74F = {
 			isa = PBXGroup;
 			children = (
-				AD0736EA264816C6004FE74F /* fmHUDApp */,
-				AD09D7A026551D9300768062 /* FMProgressHUDDemoUITests */,
+				AD0736EA264816C6004FE74F /* FMProgressHUD-Demo */,
 				AD0736E9264816C6004FE74F /* Products */,
 				AD073728264831FB004FE74F /* Frameworks */,
 			);
@@ -89,13 +64,12 @@
 		AD0736E9264816C6004FE74F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AD0736E8264816C6004FE74F /* fmHUDApp.app */,
-				AD09D79F26551D9300768062 /* FMProgressHUDDemoUITests.xctest */,
+				AD0736E8264816C6004FE74F /* FMProgressHUD-Demo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		AD0736EA264816C6004FE74F /* fmHUDApp */ = {
+		AD0736EA264816C6004FE74F /* FMProgressHUD-Demo */ = {
 			isa = PBXGroup;
 			children = (
 				AD09D7862653FF5F00768062 /* FMProgressHUD */,
@@ -107,9 +81,8 @@
 				AD0736F4264816C7004FE74F /* Assets.xcassets */,
 				AD0736F6264816C7004FE74F /* LaunchScreen.storyboard */,
 				AD0736F9264816C7004FE74F /* Info.plist */,
-				AD0737032648260E004FE74F /* fmHUDApp-Bridging-Header.h */,
 			);
-			path = fmHUDApp;
+			path = "FMProgressHUD-Demo";
 			sourceTree = "<group>";
 		};
 		AD073728264831FB004FE74F /* Frameworks */ = {
@@ -132,22 +105,12 @@
 			path = FMProgressHUD;
 			sourceTree = "<group>";
 		};
-		AD09D7A026551D9300768062 /* FMProgressHUDDemoUITests */ = {
-			isa = PBXGroup;
-			children = (
-				AD09D7A126551D9300768062 /* FMProgressHUDDemoUITests.swift */,
-				AD09D7A326551D9300768062 /* Info.plist */,
-				AD09D7AB2655225900768062 /* MainPage.swift */,
-			);
-			path = FMProgressHUDDemoUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AD0736E7264816C6004FE74F /* fmHUDApp */ = {
+		AD0736E7264816C6004FE74F /* FMProgressHUD-Demo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AD0736FC264816C7004FE74F /* Build configuration list for PBXNativeTarget "fmHUDApp" */;
+			buildConfigurationList = AD0736FC264816C7004FE74F /* Build configuration list for PBXNativeTarget "FMProgressHUD-Demo" */;
 			buildPhases = (
 				AD0736E4264816C6004FE74F /* Sources */,
 				AD0736E5264816C6004FE74F /* Frameworks */,
@@ -157,30 +120,12 @@
 			);
 			dependencies = (
 			);
-			name = fmHUDApp;
+			name = "FMProgressHUD-Demo";
 			packageProductDependencies = (
 			);
 			productName = fmHUDApp;
-			productReference = AD0736E8264816C6004FE74F /* fmHUDApp.app */;
+			productReference = AD0736E8264816C6004FE74F /* FMProgressHUD-Demo.app */;
 			productType = "com.apple.product-type.application";
-		};
-		AD09D79E26551D9300768062 /* FMProgressHUDDemoUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = AD09D7A626551D9300768062 /* Build configuration list for PBXNativeTarget "FMProgressHUDDemoUITests" */;
-			buildPhases = (
-				AD09D79B26551D9300768062 /* Sources */,
-				AD09D79C26551D9300768062 /* Frameworks */,
-				AD09D79D26551D9300768062 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				AD09D7A526551D9300768062 /* PBXTargetDependency */,
-			);
-			name = FMProgressHUDDemoUITests;
-			productName = FMProgressHUDDemoUITests;
-			productReference = AD09D79F26551D9300768062 /* FMProgressHUDDemoUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -194,13 +139,9 @@
 					AD0736E7264816C6004FE74F = {
 						CreatedOnToolsVersion = 12.3;
 					};
-					AD09D79E26551D9300768062 = {
-						CreatedOnToolsVersion = 12.3;
-						TestTargetID = AD0736E7264816C6004FE74F;
-					};
 				};
 			};
-			buildConfigurationList = AD0736E3264816C5004FE74F /* Build configuration list for PBXProject "fmHUDApp" */;
+			buildConfigurationList = AD0736E3264816C5004FE74F /* Build configuration list for PBXProject "FMProgressHUD-Demo" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -215,8 +156,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AD0736E7264816C6004FE74F /* fmHUDApp */,
-				AD09D79E26551D9300768062 /* FMProgressHUDDemoUITests */,
+				AD0736E7264816C6004FE74F /* FMProgressHUD-Demo */,
 			);
 		};
 /* End PBXProject section */
@@ -229,13 +169,6 @@
 				AD0736F8264816C7004FE74F /* LaunchScreen.storyboard in Resources */,
 				AD0736F5264816C7004FE74F /* Assets.xcassets in Resources */,
 				AD0736F3264816C6004FE74F /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AD09D79D26551D9300768062 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,24 +191,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AD09D79B26551D9300768062 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AD09D7A226551D9300768062 /* FMProgressHUDDemoUITests.swift in Sources */,
-				AD09D7AC2655225900768062 /* MainPage.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		AD09D7A526551D9300768062 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = AD0736E7264816C6004FE74F /* fmHUDApp */;
-			targetProxy = AD09D7A426551D9300768062 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		AD0736F1264816C6004FE74F /* Main.storyboard */ = {
@@ -420,14 +336,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3N7XRF7M9C;
-				INFOPLIST_FILE = fmHUDApp/Info.plist;
+				INFOPLIST_FILE = "FMProgressHUD-Demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.matchifang.fmHUDApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.matchifang.FMProgressHUD-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "$SRCROOT/fmHUDApp/fmHUDApp-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -440,61 +356,23 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3N7XRF7M9C;
-				INFOPLIST_FILE = fmHUDApp/Info.plist;
+				INFOPLIST_FILE = "FMProgressHUD-Demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.matchifang.fmHUDApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.matchifang.FMProgressHUD-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "$SRCROOT/fmHUDApp/fmHUDApp-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		AD09D7A726551D9300768062 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3N7XRF7M9C;
-				INFOPLIST_FILE = FMProgressHUDDemoUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.matchifang.FMProgressHUDDemoUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = fmHUDApp;
-			};
-			name = Debug;
-		};
-		AD09D7A826551D9300768062 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3N7XRF7M9C;
-				INFOPLIST_FILE = FMProgressHUDDemoUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.matchifang.FMProgressHUDDemoUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = fmHUDApp;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AD0736E3264816C5004FE74F /* Build configuration list for PBXProject "fmHUDApp" */ = {
+		AD0736E3264816C5004FE74F /* Build configuration list for PBXProject "FMProgressHUD-Demo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AD0736FA264816C7004FE74F /* Debug */,
@@ -503,20 +381,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AD0736FC264816C7004FE74F /* Build configuration list for PBXNativeTarget "fmHUDApp" */ = {
+		AD0736FC264816C7004FE74F /* Build configuration list for PBXNativeTarget "FMProgressHUD-Demo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AD0736FD264816C7004FE74F /* Debug */,
 				AD0736FE264816C7004FE74F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		AD09D7A626551D9300768062 /* Build configuration list for PBXNativeTarget "FMProgressHUDDemoUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				AD09D7A726551D9300768062 /* Debug */,
-				AD09D7A826551D9300768062 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
