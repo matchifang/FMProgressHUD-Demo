@@ -20,6 +20,7 @@
 		AD09D78F2653FF5F00768062 /* FMProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD09D7892653FF5F00768062 /* FMProgressHUD.swift */; };
 		AD09D7912653FF5F00768062 /* FMLoadingSpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD09D78B2653FF5F00768062 /* FMLoadingSpinnerView.swift */; };
 		AD09D7922653FF5F00768062 /* FMTouchBlockingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD09D78C2653FF5F00768062 /* FMTouchBlockingView.swift */; };
+		AD09D7C72655574800768062 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AD09D7C62655574800768062 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		AD09D7892653FF5F00768062 /* FMProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMProgressHUD.swift; sourceTree = "<group>"; };
 		AD09D78B2653FF5F00768062 /* FMLoadingSpinnerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMLoadingSpinnerView.swift; sourceTree = "<group>"; };
 		AD09D78C2653FF5F00768062 /* FMTouchBlockingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMTouchBlockingView.swift; sourceTree = "<group>"; };
+		AD09D7C62655574800768062 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 		AD0736EA264816C6004FE74F /* FMProgressHUD-Demo */ = {
 			isa = PBXGroup;
 			children = (
+				AD09D7C62655574800768062 /* README.md */,
 				AD09D7862653FF5F00768062 /* FMProgressHUD */,
 				AD09D77E2651CEC600768062 /* UIColor+Utilities.swift */,
 				AD0736EB264816C6004FE74F /* AppDelegate.swift */,
@@ -168,6 +171,7 @@
 			files = (
 				AD0736F8264816C7004FE74F /* LaunchScreen.storyboard in Resources */,
 				AD0736F5264816C7004FE74F /* Assets.xcassets in Resources */,
+				AD09D7C72655574800768062 /* README.md in Resources */,
 				AD0736F3264816C6004FE74F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
