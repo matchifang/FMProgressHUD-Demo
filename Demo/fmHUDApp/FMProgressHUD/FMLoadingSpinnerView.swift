@@ -1,18 +1,28 @@
 //
-//  FMIndefiniteAnimatedView.swift
+//  FMLoadingSpinnerView.swift
 //  fmHUDApp
 //
 //  Created by Matchima Ditthawibun on 10/5/21.
 //
 
-class FMIndefiniteAnimatedView: UIView {
+#if !os(macOS)
+import UIKit
+#endif
+
+class FMLoadingSpinnerView: UIView {
     
     
     // MARK: Config Vars
     
     var radius: CGFloat = 18 {
         didSet {
+            indefiniteAnimatedLayer.removeFromSuperlayer()
+            if superview != nil {
+                layoutAnimatedLayer()
+            }
             indefiniteAnimatedLayer.path = smoothedPath.cgPath
+            indefiniteAnimatedLayer.frame = CGRect(x: 0, y: 0, width: arcCenter.x * 2, height: arcCenter.y * 2)
+            invalidateIntrinsicContentSize()
         }
     }
     var strokeColor: UIColor = .black {
@@ -23,6 +33,8 @@ class FMIndefiniteAnimatedView: UIView {
     var strokeThickness: CGFloat = 2.0 {
         didSet {
             indefiniteAnimatedLayer.lineWidth = strokeThickness
+            indefiniteAnimatedLayer.frame = CGRect(x: 0, y: 0, width: arcCenter.x * 2, height: arcCenter.y * 2)
+            invalidateIntrinsicContentSize()
         }
     }
     
@@ -90,6 +102,8 @@ class FMIndefiniteAnimatedView: UIView {
         return indefiniteAnimatedLayer
     }()
     
+    // MARK: Instance Methods
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -115,28 +129,9 @@ class FMIndefiniteAnimatedView: UIView {
         
         let widthDiff = bounds.width - indefiniteAnimatedLayer.bounds.width
         let heightDiff = bounds.height - indefiniteAnimatedLayer.bounds.height
-        indefiniteAnimatedLayer.position = CGPoint(x: bounds.width - indefiniteAnimatedLayer.bounds.width / 2 - widthDiff / 2,
-                                                   y: bounds.height - indefiniteAnimatedLayer.bounds.height / 2 - heightDiff / 2)
-    }
-    
-    private func setFrame(frame: CGRect) {
-        if !frame.equalTo(super.frame) {
-            super.frame = frame
-            if superview != nil {
-                layoutAnimatedLayer()
-            }
-        }
-    }
-    
-    func setRadius(radius: CGFloat) {
-        if self.radius != radius {
-            self.radius = radius
-            indefiniteAnimatedLayer.removeFromSuperlayer()
-            
-            if superview != nil {
-                layoutAnimatedLayer()
-            }
-        }
+        let xPos = bounds.width - indefiniteAnimatedLayer.bounds.width / 2 - widthDiff / 2
+        let yPos = bounds.height - indefiniteAnimatedLayer.bounds.height / 2 - heightDiff / 2
+        indefiniteAnimatedLayer.position = CGPoint(x: xPos, y: yPos)
     }
     
 }

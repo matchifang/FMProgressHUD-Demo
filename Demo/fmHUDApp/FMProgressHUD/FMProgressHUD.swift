@@ -5,76 +5,121 @@
 //  Created by Matchima Ditthawibun on 11/5/21.
 //
 
-import Foundation
+#if !os(macOS)
+import UIKit
+#endif
 
 
-// TODO: move HUD when keyboard shows
-// TODO: Should things in the background be disabled?
-//  - user can set enable/disable
-//  - disable during progress and normal loading
-//  - enable during showImage (info, success, error)
-// TODO: show hudView inside a backgroundView that is the size of the whole screen
-// TODO: Progress disappears just before showing completion
-// TODO: auto-dismiss view for error and success
-// TODO: accessibility
-// TODO: bug: progress is not aligned when changing ring radius
-
-// the background dimming/staying clear when HUD is shown
-enum FMProgressHUDMaskType {
+/// mask of the background when HUD is visible
+public enum FMProgressHUDMaskType {
     case clear
     case black
     case custom
 }
 
-enum FMProgressHUDAnimationType {
-    case flat   // indefinite animated ring
-    case native // iOS native UIActivityIndicatorView
+/// Animation of the loading spinner:
+/// 1. flat - animated ring spinner
+/// 2. native - iOS native UIActivityIndicatorView
+public enum FMProgressHUDAnimationType {
+    case flat
+    case native
 }
 
-enum FMProgressHUDStyle {
+/// Style of progress HUD, which determines the foreground and background colors of the HUD, label, and spinner
+public enum FMProgressHUDStyle {
     case light
     case dark
     case custom
 }
 
-class FMProgressHUD: UIView {
+/// Singleton class for showing progress HUD
+/// HUD comprises of 2 sections: 1. image and 2. status. Image section can show image, loading spinner, or progress ring. Status section is optional and can be omitted
+/// HUD should show either one of the following combinations:
+///     1. indefinite loading spinner
+///     2. indefinite loading spinner with status
+///     3. progress loading spinner
+///     4. progress loading spinner with  status
+///     5. image
+///     6. image spinner with  status
+public class FMProgressHUD {
     
     // MARK: Config Vars
     
-    static var animationType = FMProgressHUDAnimationType.flat
-    static var hudViewCustomBlurEffect: UIBlurEffect?
-    static var hudBackgroundColor = UIColor.white {
+    /// Fade in animation duration when a HUD is shown - default is `0.15`
+    public static var fadeInAnimationDuration: TimeInterval = 0.15
+    
+    /// Fade out animation duration when a HUD is dismissed - default is `0.15`
+    public static var fadeOutAnimationDuration: TimeInterval = 0.15
+    
+    /// Image size - default is `CGSize(width: 28, height: 28)`
+    public static var imageSize = CGSize(width: 28, height: 28)
+    
+    /// Animation of the loading spinner - default is `FMProgressHUDAnimationType.flat`
+    public static var animationType = FMProgressHUDAnimationType.flat
+    
+    /// Custom blur effect on the HUD when style is `FMProgressHUDAnimationType.custom` - default is `nil`
+    public static var hudViewCustomBlurEffect: UIBlurEffect? {
+        didSet {
+            if style == .custom {
+                FMProgressHUD.sharedView.hudView.effect = hudViewCustomBlurEffect
+            }
+        }
+    }
+    
+    /// HUD's background color - default is `UIColor.white`
+    public static var hudBackgroundColor = UIColor.white {
         didSet {
             FMProgressHUD.sharedView.hudView.backgroundColor = FMProgressHUD.sharedView.backgroundColorForStyle
         }
     }
-    static var maskType = FMProgressHUDMaskType.clear {
+    
+    /// HUD background's background color - default is `UIColor.clear`
+    public static var backgroundLayerColor = UIColor.clear {
         didSet {
-            
-        }
-    }
-    static var fadeInAnimationDuration: TimeInterval = 0.15
-    static var fadeOutAnimationDuration: TimeInterval = 0.15
-    static var imageViewWidth: CGFloat = 28
-    static var disableTouch = true {
-        didSet {
-            FMProgressHUD.sharedView.backgroundView.disableTouch = disableTouch
+            FMProgressHUD.sharedView.backgroundView.backgroundColor = backgroundLayerColor
         }
     }
     
-    static var cornerRadius: CGFloat = 14 {
+    /// HUD background's background mask type - default is `FMProgressHUDMaskType.clear`
+    public static var maskType = FMProgressHUDMaskType.clear {
+        didSet {
+            switch maskType {
+            case .black:
+                FMProgressHUD.sharedView.backgroundView.backgroundColor = UIColor(white: 0, alpha: 0.4)
+            case .custom:
+                FMProgressHUD.sharedView.backgroundView.backgroundColor = FMProgressHUD.backgroundLayerColor
+            default:
+                FMProgressHUD.sharedView.backgroundView.backgroundColor = .clear
+            }
+        }
+    }
+    
+    /// Whether or not user interactions are allowed while the HUD is shown - default is `false`
+    public static var allowUserInteraction = true {
+        didSet {
+            FMProgressHUD.sharedView.backgroundView.disableTouch = !allowUserInteraction
+        }
+    }
+    
+    /// Corner radius of the HUD - default is `14`
+    public static var cornerRadius: CGFloat = 14 {
         didSet {
             FMProgressHUD.sharedView.hudView.layer.cornerRadius = cornerRadius
         }
     }
     
-    static var ringThickness: CGFloat = 2 {
+    /// Ring thickness of the ring spinner - default is `2`
+    public static var ringThickness: CGFloat = 2 {
         didSet {
             FMProgressHUD.sharedView.flatSpinner.strokeThickness = ringThickness
+            FMProgressHUD.sharedView.ringView.strokeThickness = ringThickness
+            FMProgressHUD.sharedView.backgroundRingView.strokeThickness = ringThickness
         }
     }
     
-    static var ringRadius: CGFloat = 18 {
+    // TODO: allow user to set ring radius
+    /// Ring radius of the ring spinner - default is `18`
+    private static var ringRadius: CGFloat = 18 {
         didSet {
             FMProgressHUD.sharedView.flatSpinner.radius = ringRadius
             FMProgressHUD.sharedView.ringView.radius = ringRadius
@@ -82,14 +127,15 @@ class FMProgressHUD: UIView {
         }
     }
     
-    
-    static var labelFontSize: CGFloat = 15 {
+    /// Status label font size - default is `15`
+    public static var labelFontSize: CGFloat = 15 {
         didSet {
             FMProgressHUD.sharedView.statusLabel.font = UIFont.systemFont(ofSize: labelFontSize)
         }
     }
     
-    static var style = FMProgressHUDStyle.light {
+    /// Style that determines foregorund, background, and blur effect colors  - default is `FMProgressHUDStyle.light`
+    public static var style = FMProgressHUDStyle.light {
         didSet {
             if style != .custom {
                 let blurEffectStyle = style == .dark ? UIBlurEffect.Style.dark : UIBlurEffect.Style.light
@@ -107,7 +153,8 @@ class FMProgressHUD: UIView {
         }
     }
     
-    static var hudForegroundColor = UIColor.black {
+    /// HUD foregorund color  - default is `UIColor.black`
+    public static var hudForegroundColor = UIColor.black {
         didSet {
             FMProgressHUD.sharedView.nativeSpinner.color = FMProgressHUD.sharedView.foregroundColorForStyle
             FMProgressHUD.sharedView.flatSpinner.strokeColor = FMProgressHUD.sharedView.foregroundColorForStyle
@@ -116,16 +163,17 @@ class FMProgressHUD: UIView {
         }
     }
     
+    // MARK: Static constants
     
-    // MARK: constants
-    
-    final let VERTICAL_SPACING: CGFloat = 12
-    final let HORIZONTAL_SPACING: CGFloat = 12
+    private static let sharedView = FMProgressHUD()
+    private static let VERTICAL_SPACING: CGFloat = 12
+    private static let HORIZONTAL_SPACING: CGFloat = 12
     
     // MARK: Lazy Vars
     
     private lazy var nativeSpinner: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .large)
+        indicator.accessibilityIdentifier = "FMProgressHUD_nativeSpinner"
         indicator.startAnimating()
         indicator.color = FMProgressHUD.hudForegroundColor
         indicator.translatesAutoresizingMaskIntoConstraints = false
@@ -133,8 +181,9 @@ class FMProgressHUD: UIView {
         return indicator
     }()
     
-    private lazy var flatSpinner: FMIndefiniteAnimatedView = {
-        let flatSpinner = FMIndefiniteAnimatedView()
+    private lazy var flatSpinner: FMLoadingSpinnerView = {
+        let flatSpinner = FMLoadingSpinnerView()
+        flatSpinner.accessibilityIdentifier = "FMProgressHUD_flatSpinner"
         flatSpinner.strokeColor = FMProgressHUD.hudForegroundColor
         flatSpinner.strokeThickness = FMProgressHUD.ringThickness
         flatSpinner.radius = FMProgressHUD.ringRadius
@@ -145,6 +194,7 @@ class FMProgressHUD: UIView {
     
     private lazy var statusLabel: UILabel = {
         let statusLabel = UILabel()
+        statusLabel.accessibilityIdentifier = "FMProgressHUD_statusLabel"
         statusLabel.font = UIFont.systemFont(ofSize: FMProgressHUD.labelFontSize)
         statusLabel.adjustsFontSizeToFitWidth = true
         statusLabel.textAlignment = .center
@@ -166,39 +216,40 @@ class FMProgressHUD: UIView {
         return stackView
     }()
     
-    private lazy var ringView: FMProgressAnimatedView = {
-        let ringView = FMProgressAnimatedView()
+    private lazy var ringView: FMLoadingProgressView = {
+        let ringView = FMLoadingProgressView()
         ringView.strokeColor = foregroundColorForStyle
         ringView.strokeThickness = FMProgressHUD.ringThickness
         ringView.radius = FMProgressHUD.ringRadius
         ringView.translatesAutoresizingMaskIntoConstraints = false
-                
+        
         return ringView
     }()
     
-    private lazy var backgroundRingView: FMProgressAnimatedView = {
-        let backgroundRingView = FMProgressAnimatedView()
+    private lazy var backgroundRingView: FMLoadingProgressView = {
+        let backgroundRingView = FMLoadingProgressView()
+        backgroundRingView.accessibilityIdentifier = "FMProgressHUD_progressView"
         backgroundRingView.strokeEnd = 1
         backgroundRingView.strokeColor = foregroundColorForStyle.withAlphaComponent(0.1)
         backgroundRingView.strokeThickness = FMProgressHUD.ringThickness
         backgroundRingView.radius = FMProgressHUD.ringRadius
         backgroundRingView.translatesAutoresizingMaskIntoConstraints = false
         backgroundRingView.addSubview(ringView)
-                
+        
         return backgroundRingView
     }()
     
     private lazy var hudView: UIVisualEffectView = {
-        
         let blurEffectStyle = FMProgressHUD.style == .dark ? UIBlurEffect.Style.dark : UIBlurEffect.Style.light
         let blurEffect = UIBlurEffect(style: blurEffectStyle)
         let hudView = UIVisualEffectView(effect: blurEffect)
+        hudView.accessibilityIdentifier = "FMProgressHUD_hudView"
         hudView.layer.masksToBounds = true
         hudView.backgroundColor = UIColor.white.withAlphaComponent(0.6)
         hudView.translatesAutoresizingMaskIntoConstraints = false
         hudView.layer.cornerRadius = FMProgressHUD.cornerRadius
-        hudView.backgroundColor = .systemGreen
         hudView.alpha = 0
+        hudView.isAccessibilityElement = true
         
         hudView.contentView.addSubview(stackView)
         let inset = FMProgressHUD.cornerRadius / 2
@@ -208,39 +259,35 @@ class FMProgressHUD: UIView {
                                                                    trailing: inset)
         let margins = hudView.layoutMarginsGuide
         NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: HORIZONTAL_SPACING),
-            stackView.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: -HORIZONTAL_SPACING),
-            stackView.topAnchor.constraint(equalTo: margins.topAnchor, constant: VERTICAL_SPACING),
-            stackView.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: -VERTICAL_SPACING),
+            stackView.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: FMProgressHUD.HORIZONTAL_SPACING),
+            stackView.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: -FMProgressHUD.HORIZONTAL_SPACING),
+            stackView.topAnchor.constraint(equalTo: margins.topAnchor, constant: FMProgressHUD.VERTICAL_SPACING),
+            stackView.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: -FMProgressHUD.VERTICAL_SPACING),
         ])
         
         return hudView
     }()
     
-    class TouchBlockingView: UIView {
-        var disableTouch = false
-        
-        override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-            disableTouch
-        }
-    }
-    
-    private lazy var backgroundView: TouchBlockingView = {
-        let backgroundView = TouchBlockingView()
-        backgroundView.disableTouch = FMProgressHUD.disableTouch
+    private lazy var backgroundView: FMTouchBlockingView = {
+        let backgroundView = FMTouchBlockingView()
+        backgroundView.accessibilityIdentifier = "FMProgressHUD_backgroundView"
+        backgroundView.alpha = 0
+        backgroundView.disableTouch = !FMProgressHUD.allowUserInteraction
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
         backgroundView.addSubview(hudView)
         NSLayoutConstraint.activate([
             hudView.centerYAnchor.constraint(equalTo: backgroundView.layoutMarginsGuide.centerYAnchor),
             hudView.centerXAnchor.constraint(equalTo: backgroundView.layoutMarginsGuide.centerXAnchor),
         ])
-//        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(backgroundViewTapped))
-//        backgroundView.addGestureRecognizer(tapGestureRecognizer)
         
         return backgroundView
     }()
     
-    // MARK: Computed Vars
+    // MARK: Private Vars
+    
+    private var imageView: UIImageView?
+    private var fadeOutTimer: Timer?
+    private var backgrounBottomConstraint: NSLayoutConstraint?
     
     private var backgroundColorForStyle: UIColor {
         switch FMProgressHUD.style {
@@ -264,7 +311,6 @@ class FMProgressHUD: UIView {
         }
     }
     
-    private var imageView: UIImageView?
     
     private var spinner: UIView {
         FMProgressHUD.animationType == .flat ? flatSpinner : nativeSpinner
@@ -284,205 +330,131 @@ class FMProgressHUD: UIView {
         return nil
     }
     
-    private var fadeOutTimer: Timer?
+    // MARK: Initializer
     
-    // MARK: Static vars
-    
-    static var sharedView = FMProgressHUD()
+    init() {
+        observeKeyboard()
+        FMKeyboardStateListener.shared.observeKeyboard()
+    }
     
     // MARK: Static methods
     
-    static func show() {
-        FMProgressHUD.sharedView.show()
-    }
-    
-    static func show(status: String) {
+    /// Shows indefinite loading spinner HUD with optional status.
+    /// Spinner is shown as either a ring spinner or native UIActivityIndicator, depending on the `animationType` value
+    /// - parameters:
+    ///     - status: optional status to show with the loading spinner. Default is nil
+    public static func show(status: String? = nil) {
         FMProgressHUD.sharedView.show(status: status)
     }
     
-    static func show(progress: CGFloat, status: String) {
+    /// Shows image HUD with optional status.
+    /// - parameters:
+    ///     - progress: optional loading progress from 0 to 1
+    ///     - status: optional status to show with the loading spinner. Default is nil
+    public static func show(progress: CGFloat, status: String? = nil) {
         FMProgressHUD.sharedView.show(progress: progress, status: status)
     }
     
-    static func showInfo(status: String) {
+    /// Shows progress loading HUD with optional status.
+    /// - parameters:
+    ///     - image: image to show
+    ///     - status: optional status to show with the loading spinner. Default is nil
+    public static func show(image: UIImage, status: String? = nil) {
+        FMProgressHUD.sharedView.show(image: image, status: status)
+    }
+    
+    /// Show info HUD with SFSymbol's "info.circle"  icon
+    /// - parameter status: optional status to show with the (i) symbol. Default is nil
+    public static func showInfo(status: String? = nil) {
         guard let image = UIImage(systemName: "info.circle") else { return }
-        FMProgressHUD.sharedView.showImage(image:image , status: status)
+        FMProgressHUD.sharedView.show(image:image , status: status)
     }
     
-    static func showSuccess(status: String) {
+    /// Show success HUD with SFSymbol's "checkmark"  icon
+    /// - parameter status: optional status to show with the success tick. Default is nil
+    public static func showSuccess(status: String? = nil) {
         guard let image = UIImage(systemName: "checkmark") else { return }
-        FMProgressHUD.sharedView.showImage(image: image, status: status)
+        FMProgressHUD.sharedView.show(image: image, status: status)
     }
     
-    static func showError(status: String) {
+    /// Show error HUD with SFSymbol's "xmark"  icon
+    /// - parameter status: optional status to show with the X mark. Default is nil
+    public static func showError(status: String? = nil) {
         guard let image = UIImage(systemName: "xmark") else { return }
-        FMProgressHUD.sharedView.showImage(image: image, status: status)
+        FMProgressHUD.sharedView.show(image: image, status: status)
     }
     
-    static func dismiss() {
+    /// Dismiss the HUD
+    public static func dismiss() {
         FMProgressHUD.sharedView.dismiss()
     }
     
     // MARK: Instance methods
     
-    func observeKeyboard() {
-        
+    private func observeKeyboard() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
     }
     
-    @objc func keyboardWillShow(_ notification: Notification) {
+    @objc private func keyboardWillShow(_ notification: Notification) {
         if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
-//            NSLayoutConstraint.activate([
-//                backgroundView.bottomAnchor.constraint(equalTo: frontWindow!.bottomAnchor, constant: keyboardFrame.height)
-//            ])
-
-            
-            layoutIfNeeded()
             backgrounBottomConstraint?.constant = -keyboardFrame.height
-            UIView.animate(withDuration: 1.0) { [weak self] in
+            UIView.animate(withDuration: 0.5) { [weak self] in
                 self?.backgroundView.layoutIfNeeded()
             }
-            
-            
-//            let keyboardRectangle = keyboardFrame as
-//            let keyboardHeight = keyboardRectangle.height
-//            self.keyboardBottom.constant = keyboardHeight - self.bottomLayoutGuide.length
-//            DispatchQueue.main.asyncAfter(deadline: .now()+0.1, execute: {
-//                let bottomOffset = CGPoint(x: 0, y: self.scrlView.contentSize.height - self.scrlView.bounds.size.height)
-//                self.scrlView.setContentOffset(bottomOffset, animated: true)
-//            })
         }
     }
     
-    var backgrounBottomConstraint: NSLayoutConstraint?
-    lazy var textField: UITextField = {
-        let textField = UITextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        return textField
-    }()
-    
-    @objc func backgroundViewTapped() {
-//        dismiss()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            let dict = [UIResponder.keyboardFrameEndUserInfoKey: CGRect(x: 0, y: 0, width: 300, height: 500) as NSValue]
-            
-            NotificationCenter.default.post(name: UIResponder.keyboardWillShowNotification, object: nil, userInfo: dict)
+    @objc private func keyboardWillHide(_ notification: Notification) {
+        backgrounBottomConstraint?.constant = 0
+        UIView.animate(withDuration: 0.5) { [weak self] in
+            self?.backgroundView.layoutIfNeeded()
         }
     }
     
-    private func addHudView(duration: TimeInterval?) {
-        guard let frontWindow = frontWindow else { return }
-
-        frontWindow.addSubview(backgroundView)
-        backgrounBottomConstraint = backgroundView.bottomAnchor.constraint(equalTo: frontWindow.bottomAnchor)
-        NSLayoutConstraint.activate([
-            backgroundView.leadingAnchor.constraint(equalTo: frontWindow.leadingAnchor),
-            backgroundView.topAnchor.constraint(equalTo: frontWindow.topAnchor),
-            backgroundView.trailingAnchor.constraint(equalTo: frontWindow.trailingAnchor),
-            backgrounBottomConstraint!,
-        ])
-
-        if hudView.alpha == 0 {
-            hudView.alpha = 0
-            for view in hudView.contentView.subviews {
-                view.alpha = 0
-            }
-            
-            hudView.transform = hudView.transform.scaledBy(x: 1.3, y: 1.3)
-            let animationsBlock = { [weak self] in
-                guard let self = self else { return }
-                self.hudView.transform = CGAffineTransform.identity
-                self.fadeInEffects()
-            }
-            let completionBlock = { [weak self] (_: Bool) in
-                guard let self = self else { return }
-                if let duration = duration {
-                    self.fadeOutTimer = Timer(timeInterval: duration, target: self, selector: #selector(self.dismiss), userInfo: nil, repeats: false)
-                    RunLoop.main.add(self.fadeOutTimer!, forMode: .common)
-                }
-            }
-//            let animationDuration = self.ringView.strokeEnd >= 0 ? 0 : FMProgressHUD.fadeInAnimationDuration
-            UIView.animate(withDuration: FMProgressHUD.fadeInAnimationDuration,
-                           delay: 0,
-                           options: [.allowUserInteraction, .curveEaseIn, .beginFromCurrentState],
-                           animations: animationsBlock,
-                           completion: completionBlock)
-        }
-    }
-    
-    private func fadeInEffects() {
-        hudView.alpha = 1
-        for view in hudView.contentView.subviews {
-            view.alpha = 1
-        }
-    }
-    
-    private func fadeOutEffects() {
-        hudView.alpha = 0
-        for view in hudView.contentView.subviews {
-            view.alpha = 0
-        }
-    }
-    
-    let maximumDismissTimeInterval = CGFloat.greatestFiniteMagnitude
-    func getDisplayDuration(for status: String) -> TimeInterval {
-        TimeInterval(min(CGFloat(status.count) * 0.6 + 0.5, maximumDismissTimeInterval))
-    }
-    
-    private func show(status: String? = nil) {
-        observeKeyboard()
-        show(progress: -1, status: status)
-    }
-    
-    private func showImage(image: UIImage, status: String) {
+    private func show(progress: CGFloat = -1, image: UIImage? = nil, status: String? = nil) {
         for view in self.stackView.arrangedSubviews {
             view.removeFromSuperview()
         }
-        
-        let duration = getDisplayDuration(for: status)
-        fadeOutTimer = nil
-        
-        for view in stackView.arrangedSubviews {
-            view.removeFromSuperview()
-        }
-        let imageView = UIImageView(image: image)
-        imageView.tintColor = foregroundColorForStyle
-        self.imageView = imageView
-        
-        statusLabel.text = status
-        stackView.addArrangedSubview(imageView)
-        stackView.addArrangedSubview(statusLabel)
-        
-        NSLayoutConstraint.activate([
-            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor),
-            imageView.heightAnchor.constraint(equalToConstant: FMProgressHUD.imageViewWidth)
-        ])
-        
-        addHudView(duration: duration)
-    }
-    
-    private func show(progress: CGFloat = -1, status: String? = nil) {
-        for view in self.stackView.arrangedSubviews {
-            view.removeFromSuperview()
-        }
-        
-        if progress >= 0 {
-            stackView.addArrangedSubview(backgroundRingView)
-            ringView.strokeEnd = progress
+        backgroundView.accessibilityViewIsModal = true
+                
+        // Add image
+        if let image = image {
+            let imageView = UIImageView(image: image)
+            imageView.tintColor = foregroundColorForStyle
+            imageView.accessibilityIdentifier = "FMProgressHUD_imageView"
+            self.imageView = imageView
+            stackView.addArrangedSubview(imageView)
+            
+            NSLayoutConstraint.activate([
+                imageView.heightAnchor.constraint(equalToConstant: FMProgressHUD.imageSize.height),
+                imageView.widthAnchor.constraint(equalToConstant: FMProgressHUD.imageSize.width)
+            ])
+            
+        // Add loading spinner or progress spinner
         } else {
-            stackView.addArrangedSubview(spinner)
+            if progress >= 0 {
+                stackView.addArrangedSubview(backgroundRingView)
+                ringView.strokeEnd = progress
+            } else {
+                stackView.addArrangedSubview(spinner)
+            }
         }
         
+        // Add label
         if let status = status {
             statusLabel.text = status
+            hudView.accessibilityLabel = status
             stackView.addArrangedSubview(statusLabel)
         }
         
-        addHudView(duration: nil)
+        let duration = image == nil ? nil : TimeInterval(min(CGFloat((status ?? "").count) * 0.6 + 0.5, CGFloat.greatestFiniteMagnitude))
+        addHudView(duration: duration)
     }
     
     @objc func dismiss() {
+        self.fadeOutTimer?.invalidate()
+        
         if backgroundView.superview != nil {
             let animationsBlock = { [weak self] in
                 guard let self = self else { return }
@@ -497,6 +469,7 @@ class FMProgressHUD: UIView {
                 }
                 self.ringView.strokeEnd = -1
             }
+            
             UIView.animate(withDuration: FMProgressHUD.fadeOutAnimationDuration,
                            delay: 0,
                            options: [.allowUserInteraction, .curveEaseIn, .beginFromCurrentState],
@@ -505,4 +478,67 @@ class FMProgressHUD: UIView {
         }
     }
     
+    private func addHudView(duration: TimeInterval?) {
+        guard let frontWindow = frontWindow else { return }
+        
+        frontWindow.addSubview(backgroundView)
+        backgrounBottomConstraint = backgroundView.bottomAnchor.constraint(equalTo: frontWindow.bottomAnchor)
+        NSLayoutConstraint.activate([
+            backgroundView.leadingAnchor.constraint(equalTo: frontWindow.leadingAnchor),
+            backgroundView.topAnchor.constraint(equalTo: frontWindow.topAnchor),
+            backgroundView.trailingAnchor.constraint(equalTo: frontWindow.trailingAnchor),
+            backgrounBottomConstraint!,
+        ])
+        
+        // adjust bottom anchor to keyboard height if keyboard is shown
+        if FMKeyboardStateListener.shared.keyboardIsVisible,
+           let keyboardFrame = FMKeyboardStateListener.shared.keyboardFrame {
+            backgrounBottomConstraint?.constant = -keyboardFrame.height
+        }
+        
+        if backgroundView.alpha == 0 {
+            hudView.alpha = 0
+            for view in hudView.contentView.subviews {
+                view.alpha = 0
+            }
+            
+            hudView.transform = hudView.transform.scaledBy(x: 1.3, y: 1.3)
+            let animationsBlock = { [weak self] in
+                guard let self = self else { return }
+                self.hudView.transform = CGAffineTransform.identity
+                self.fadeInEffects()
+            }
+            let completionBlock = { [weak self] (_: Bool) in
+                guard let self = self else { return }
+                UIAccessibility.post(notification: .screenChanged, argument: nil)
+                UIAccessibility.post(notification: .announcement, argument: self.statusLabel.text)
+                if let duration = duration {
+                    self.fadeOutTimer = Timer(timeInterval: duration, target: self, selector: #selector(self.dismiss), userInfo: nil, repeats: false)
+                    RunLoop.main.add(self.fadeOutTimer!, forMode: .common)
+                }
+            }
+            UIView.animate(withDuration: FMProgressHUD.fadeInAnimationDuration,
+                           delay: 0,
+                           options: [.allowUserInteraction, .curveEaseIn, .beginFromCurrentState],
+                           animations: animationsBlock,
+                           completion: completionBlock)
+        }
+    }
+    
+    private func fadeInEffects() {
+        backgroundView.alpha = 1
+        hudView.alpha = 1
+        for view in hudView.contentView.subviews {
+            view.alpha = 1
+        }
+    }
+    
+    private func fadeOutEffects() {
+        backgroundView.alpha = 0
+        hudView.alpha = 0
+        for view in hudView.contentView.subviews {
+            view.alpha = 0
+        }
+    }
+
 }

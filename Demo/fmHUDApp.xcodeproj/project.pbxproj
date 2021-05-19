@@ -13,18 +13,26 @@
 		AD0736F3264816C6004FE74F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD0736F1264816C6004FE74F /* Main.storyboard */; };
 		AD0736F5264816C7004FE74F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD0736F4264816C7004FE74F /* Assets.xcassets */; };
 		AD0736F8264816C7004FE74F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD0736F6264816C7004FE74F /* LaunchScreen.storyboard */; };
-		AD07372226483191004FE74F /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = AD07371826483191004FE74F /* SVRadialGradientLayer.m */; };
-		AD07372326483191004FE74F /* SVProgressAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD07371B26483191004FE74F /* SVProgressAnimatedView.m */; };
-		AD07372426483191004FE74F /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = AD07371E26483191004FE74F /* SVProgressHUD.m */; };
-		AD07372526483191004FE74F /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD07371F26483191004FE74F /* SVIndefiniteAnimatedView.m */; };
-		AD07372626483191004FE74F /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AD07372026483191004FE74F /* SVProgressHUD.bundle */; };
 		AD07372A264831FC004FE74F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD073729264831FB004FE74F /* QuartzCore.framework */; };
-		AD0737452648812C004FE74F /* FMProgressHUD2.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0737442648812C004FE74F /* FMProgressHUD2.swift */; };
-		AD07374926489D07004FE74F /* FMProgressAnimatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD07374826489D07004FE74F /* FMProgressAnimatedView.swift */; };
-		AD07374C2648A298004FE74F /* FMIndefiniteAnimatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD07374B2648A298004FE74F /* FMIndefiniteAnimatedView.swift */; };
-		AD07374F264AD4BE004FE74F /* FMProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD07374E264AD4BE004FE74F /* FMProgressHUD.swift */; };
-		ADBF404C264D39B4006DA63F /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBF404B264D39B4006DA63F /* CustomSlider.swift */; };
+		AD09D77F2651CEC600768062 /* UIColor+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD09D77E2651CEC600768062 /* UIColor+Utilities.swift */; };
+		AD09D78D2653FF5F00768062 /* FMKeyboardStateListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD09D7872653FF5F00768062 /* FMKeyboardStateListener.swift */; };
+		AD09D78E2653FF5F00768062 /* FMLoadingProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD09D7882653FF5F00768062 /* FMLoadingProgressView.swift */; };
+		AD09D78F2653FF5F00768062 /* FMProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD09D7892653FF5F00768062 /* FMProgressHUD.swift */; };
+		AD09D7912653FF5F00768062 /* FMLoadingSpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD09D78B2653FF5F00768062 /* FMLoadingSpinnerView.swift */; };
+		AD09D7922653FF5F00768062 /* FMTouchBlockingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD09D78C2653FF5F00768062 /* FMTouchBlockingView.swift */; };
+		AD09D7A226551D9300768062 /* FMProgressHUDDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD09D7A126551D9300768062 /* FMProgressHUDDemoUITests.swift */; };
+		AD09D7AC2655225900768062 /* MainPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD09D7AB2655225900768062 /* MainPage.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AD09D7A426551D9300768062 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AD0736E0264816C5004FE74F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AD0736E7264816C6004FE74F;
+			remoteInfo = fmHUDApp;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		AD0736E8264816C6004FE74F /* fmHUDApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fmHUDApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -36,22 +44,17 @@
 		AD0736F7264816C7004FE74F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD0736F9264816C7004FE74F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD0737032648260E004FE74F /* fmHUDApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "fmHUDApp-Bridging-Header.h"; sourceTree = "<group>"; };
-		AD07371826483191004FE74F /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRadialGradientLayer.m; sourceTree = "<group>"; };
-		AD07371926483191004FE74F /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
-		AD07371A26483191004FE74F /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
-		AD07371B26483191004FE74F /* SVProgressAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressAnimatedView.m; sourceTree = "<group>"; };
-		AD07371C26483191004FE74F /* SVProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
-		AD07371D26483191004FE74F /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRadialGradientLayer.h; sourceTree = "<group>"; };
-		AD07371E26483191004FE74F /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
-		AD07371F26483191004FE74F /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
-		AD07372026483191004FE74F /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
-		AD07372126483191004FE74F /* SVProgressAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressAnimatedView.h; sourceTree = "<group>"; };
 		AD073729264831FB004FE74F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		AD0737442648812C004FE74F /* FMProgressHUD2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FMProgressHUD2.swift; sourceTree = "<group>"; };
-		AD07374826489D07004FE74F /* FMProgressAnimatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FMProgressAnimatedView.swift; sourceTree = "<group>"; };
-		AD07374B2648A298004FE74F /* FMIndefiniteAnimatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FMIndefiniteAnimatedView.swift; sourceTree = "<group>"; };
-		AD07374E264AD4BE004FE74F /* FMProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FMProgressHUD.swift; sourceTree = "<group>"; };
-		ADBF404B264D39B4006DA63F /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
+		AD09D77E2651CEC600768062 /* UIColor+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Utilities.swift"; sourceTree = "<group>"; };
+		AD09D7872653FF5F00768062 /* FMKeyboardStateListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMKeyboardStateListener.swift; sourceTree = "<group>"; };
+		AD09D7882653FF5F00768062 /* FMLoadingProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMLoadingProgressView.swift; sourceTree = "<group>"; };
+		AD09D7892653FF5F00768062 /* FMProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMProgressHUD.swift; sourceTree = "<group>"; };
+		AD09D78B2653FF5F00768062 /* FMLoadingSpinnerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMLoadingSpinnerView.swift; sourceTree = "<group>"; };
+		AD09D78C2653FF5F00768062 /* FMTouchBlockingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMTouchBlockingView.swift; sourceTree = "<group>"; };
+		AD09D79F26551D9300768062 /* FMProgressHUDDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FMProgressHUDDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD09D7A126551D9300768062 /* FMProgressHUDDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FMProgressHUDDemoUITests.swift; sourceTree = "<group>"; };
+		AD09D7A326551D9300768062 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD09D7AB2655225900768062 /* MainPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +66,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AD09D79C26551D9300768062 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -70,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				AD0736EA264816C6004FE74F /* fmHUDApp */,
+				AD09D7A026551D9300768062 /* FMProgressHUDDemoUITests */,
 				AD0736E9264816C6004FE74F /* Products */,
 				AD073728264831FB004FE74F /* Frameworks */,
 			);
@@ -79,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				AD0736E8264816C6004FE74F /* fmHUDApp.app */,
+				AD09D79F26551D9300768062 /* FMProgressHUDDemoUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -86,9 +98,8 @@
 		AD0736EA264816C6004FE74F /* fmHUDApp */ = {
 			isa = PBXGroup;
 			children = (
-				ADBF404A264D39A3006DA63F /* Demo */,
-				AD07374326488114004FE74F /* FMProgressHUD */,
-				AD07371726483191004FE74F /* SVProgressHUD */,
+				AD09D7862653FF5F00768062 /* FMProgressHUD */,
+				AD09D77E2651CEC600768062 /* UIColor+Utilities.swift */,
 				AD0736EB264816C6004FE74F /* AppDelegate.swift */,
 				AD0736ED264816C6004FE74F /* SceneDelegate.swift */,
 				AD0736EF264816C6004FE74F /* ViewController.swift */,
@@ -101,23 +112,6 @@
 			path = fmHUDApp;
 			sourceTree = "<group>";
 		};
-		AD07371726483191004FE74F /* SVProgressHUD */ = {
-			isa = PBXGroup;
-			children = (
-				AD07371826483191004FE74F /* SVRadialGradientLayer.m */,
-				AD07371926483191004FE74F /* SVIndefiniteAnimatedView.h */,
-				AD07371A26483191004FE74F /* SVProgressHUD.h */,
-				AD07371B26483191004FE74F /* SVProgressAnimatedView.m */,
-				AD07371C26483191004FE74F /* SVProgressHUD-Prefix.pch */,
-				AD07371D26483191004FE74F /* SVRadialGradientLayer.h */,
-				AD07371E26483191004FE74F /* SVProgressHUD.m */,
-				AD07371F26483191004FE74F /* SVIndefiniteAnimatedView.m */,
-				AD07372026483191004FE74F /* SVProgressHUD.bundle */,
-				AD07372126483191004FE74F /* SVProgressAnimatedView.h */,
-			);
-			path = SVProgressHUD;
-			sourceTree = "<group>";
-		};
 		AD073728264831FB004FE74F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -126,23 +120,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		AD07374326488114004FE74F /* FMProgressHUD */ = {
+		AD09D7862653FF5F00768062 /* FMProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
-				AD0737442648812C004FE74F /* FMProgressHUD2.swift */,
-				AD07374826489D07004FE74F /* FMProgressAnimatedView.swift */,
-				AD07374B2648A298004FE74F /* FMIndefiniteAnimatedView.swift */,
-				AD07374E264AD4BE004FE74F /* FMProgressHUD.swift */,
+				AD09D7872653FF5F00768062 /* FMKeyboardStateListener.swift */,
+				AD09D7882653FF5F00768062 /* FMLoadingProgressView.swift */,
+				AD09D7892653FF5F00768062 /* FMProgressHUD.swift */,
+				AD09D78B2653FF5F00768062 /* FMLoadingSpinnerView.swift */,
+				AD09D78C2653FF5F00768062 /* FMTouchBlockingView.swift */,
 			);
 			path = FMProgressHUD;
 			sourceTree = "<group>";
 		};
-		ADBF404A264D39A3006DA63F /* Demo */ = {
+		AD09D7A026551D9300768062 /* FMProgressHUDDemoUITests */ = {
 			isa = PBXGroup;
 			children = (
-				ADBF404B264D39B4006DA63F /* CustomSlider.swift */,
+				AD09D7A126551D9300768062 /* FMProgressHUDDemoUITests.swift */,
+				AD09D7A326551D9300768062 /* Info.plist */,
+				AD09D7AB2655225900768062 /* MainPage.swift */,
 			);
-			path = Demo;
+			path = FMProgressHUDDemoUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,9 +158,29 @@
 			dependencies = (
 			);
 			name = fmHUDApp;
+			packageProductDependencies = (
+			);
 			productName = fmHUDApp;
 			productReference = AD0736E8264816C6004FE74F /* fmHUDApp.app */;
 			productType = "com.apple.product-type.application";
+		};
+		AD09D79E26551D9300768062 /* FMProgressHUDDemoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AD09D7A626551D9300768062 /* Build configuration list for PBXNativeTarget "FMProgressHUDDemoUITests" */;
+			buildPhases = (
+				AD09D79B26551D9300768062 /* Sources */,
+				AD09D79C26551D9300768062 /* Frameworks */,
+				AD09D79D26551D9300768062 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AD09D7A526551D9300768062 /* PBXTargetDependency */,
+			);
+			name = FMProgressHUDDemoUITests;
+			productName = FMProgressHUDDemoUITests;
+			productReference = AD09D79F26551D9300768062 /* FMProgressHUDDemoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -177,6 +194,10 @@
 					AD0736E7264816C6004FE74F = {
 						CreatedOnToolsVersion = 12.3;
 					};
+					AD09D79E26551D9300768062 = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = AD0736E7264816C6004FE74F;
+					};
 				};
 			};
 			buildConfigurationList = AD0736E3264816C5004FE74F /* Build configuration list for PBXProject "fmHUDApp" */;
@@ -188,11 +209,14 @@
 				Base,
 			);
 			mainGroup = AD0736DF264816C5004FE74F;
+			packageReferences = (
+			);
 			productRefGroup = AD0736E9264816C6004FE74F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				AD0736E7264816C6004FE74F /* fmHUDApp */,
+				AD09D79E26551D9300768062 /* FMProgressHUDDemoUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -205,7 +229,13 @@
 				AD0736F8264816C7004FE74F /* LaunchScreen.storyboard in Resources */,
 				AD0736F5264816C7004FE74F /* Assets.xcassets in Resources */,
 				AD0736F3264816C6004FE74F /* Main.storyboard in Resources */,
-				AD07372626483191004FE74F /* SVProgressHUD.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD09D79D26551D9300768062 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,22 +246,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD09D78D2653FF5F00768062 /* FMKeyboardStateListener.swift in Sources */,
+				AD09D7912653FF5F00768062 /* FMLoadingSpinnerView.swift in Sources */,
 				AD0736F0264816C6004FE74F /* ViewController.swift in Sources */,
-				AD07372326483191004FE74F /* SVProgressAnimatedView.m in Sources */,
+				AD09D78F2653FF5F00768062 /* FMProgressHUD.swift in Sources */,
+				AD09D7922653FF5F00768062 /* FMTouchBlockingView.swift in Sources */,
 				AD0736EC264816C6004FE74F /* AppDelegate.swift in Sources */,
 				AD0736EE264816C6004FE74F /* SceneDelegate.swift in Sources */,
-				AD07372226483191004FE74F /* SVRadialGradientLayer.m in Sources */,
-				AD07374C2648A298004FE74F /* FMIndefiniteAnimatedView.swift in Sources */,
-				AD07372526483191004FE74F /* SVIndefiniteAnimatedView.m in Sources */,
-				ADBF404C264D39B4006DA63F /* CustomSlider.swift in Sources */,
-				AD07374926489D07004FE74F /* FMProgressAnimatedView.swift in Sources */,
-				AD07374F264AD4BE004FE74F /* FMProgressHUD.swift in Sources */,
-				AD07372426483191004FE74F /* SVProgressHUD.m in Sources */,
-				AD0737452648812C004FE74F /* FMProgressHUD2.swift in Sources */,
+				AD09D78E2653FF5F00768062 /* FMLoadingProgressView.swift in Sources */,
+				AD09D77F2651CEC600768062 /* UIColor+Utilities.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD09D79B26551D9300768062 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD09D7A226551D9300768062 /* FMProgressHUDDemoUITests.swift in Sources */,
+				AD09D7AC2655225900768062 /* MainPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AD09D7A526551D9300768062 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AD0736E7264816C6004FE74F /* fmHUDApp */;
+			targetProxy = AD09D7A426551D9300768062 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		AD0736F1264816C6004FE74F /* Main.storyboard */ = {
@@ -409,6 +453,44 @@
 			};
 			name = Release;
 		};
+		AD09D7A726551D9300768062 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3N7XRF7M9C;
+				INFOPLIST_FILE = FMProgressHUDDemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.matchifang.FMProgressHUDDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = fmHUDApp;
+			};
+			name = Debug;
+		};
+		AD09D7A826551D9300768062 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3N7XRF7M9C;
+				INFOPLIST_FILE = FMProgressHUDDemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.matchifang.FMProgressHUDDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = fmHUDApp;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -426,6 +508,15 @@
 			buildConfigurations = (
 				AD0736FD264816C7004FE74F /* Debug */,
 				AD0736FE264816C7004FE74F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AD09D7A626551D9300768062 /* Build configuration list for PBXNativeTarget "FMProgressHUDDemoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AD09D7A726551D9300768062 /* Debug */,
+				AD09D7A826551D9300768062 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

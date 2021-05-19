@@ -1,32 +1,44 @@
 //
-//  FMIndefiniteAnimatedView.swift
+//  FMLoadingProgressView.swift
 //  fmHUDApp
 //
 //  Created by Matchima Ditthawibun on 9/5/21.
 //
 
-class FMProgressAnimatedView: UIView {
+#if !os(macOS)
+import UIKit
+#endif
+
+class FMLoadingProgressView: UIView {
     
     // MARK: Config Vars
     
     var radius: CGFloat = 18 {
         didSet {
             ringAnimatedLayer.path = smoothedPath.cgPath
+            ringAnimatedLayer.frame = CGRect(x: 0, y: 0, width: arcCenter.x * 2, height: arcCenter.y * 2)
+            invalidateIntrinsicContentSize()
         }
     }
+    
     var strokeEnd: CGFloat = 1.0 {
         didSet {
             ringAnimatedLayer.strokeEnd = strokeEnd
         }
     }
+    
     var strokeColor: UIColor = .black {
         didSet {
             ringAnimatedLayer.strokeColor = strokeColor.cgColor
         }
     }
+    
     var strokeThickness: CGFloat = 2.0 {
         didSet {
             ringAnimatedLayer.lineWidth = strokeThickness
+            ringAnimatedLayer.path = smoothedPath.cgPath
+            ringAnimatedLayer.frame = CGRect(x: 0, y: 0, width: arcCenter.x * 2, height: arcCenter.y * 2)
+            invalidateIntrinsicContentSize()
         }
     }
     
@@ -73,7 +85,6 @@ class FMProgressAnimatedView: UIView {
     
     override var intrinsicContentSize: CGSize {
         let length = (radius + strokeThickness + 5) * 2
-        
         return CGSize(width: length, height: length)
     }
     
