@@ -11,15 +11,9 @@
 		AD0736EE264816C6004FE74F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0736ED264816C6004FE74F /* SceneDelegate.swift */; };
 		AD0736F0264816C6004FE74F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0736EF264816C6004FE74F /* ViewController.swift */; };
 		AD0736F3264816C6004FE74F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD0736F1264816C6004FE74F /* Main.storyboard */; };
-		AD0736F5264816C7004FE74F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD0736F4264816C7004FE74F /* Assets.xcassets */; };
 		AD0736F8264816C7004FE74F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD0736F6264816C7004FE74F /* LaunchScreen.storyboard */; };
 		AD07372A264831FC004FE74F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD073729264831FB004FE74F /* QuartzCore.framework */; };
 		AD09D77F2651CEC600768062 /* UIColor+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD09D77E2651CEC600768062 /* UIColor+Utilities.swift */; };
-		AD09D78D2653FF5F00768062 /* FMKeyboardStateListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD09D7872653FF5F00768062 /* FMKeyboardStateListener.swift */; };
-		AD09D78E2653FF5F00768062 /* FMLoadingProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD09D7882653FF5F00768062 /* FMLoadingProgressView.swift */; };
-		AD09D78F2653FF5F00768062 /* FMProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD09D7892653FF5F00768062 /* FMProgressHUD.swift */; };
-		AD09D7912653FF5F00768062 /* FMLoadingSpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD09D78B2653FF5F00768062 /* FMLoadingSpinnerView.swift */; };
-		AD09D7922653FF5F00768062 /* FMTouchBlockingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD09D78C2653FF5F00768062 /* FMTouchBlockingView.swift */; };
 		AD09D7C72655574800768062 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AD09D7C62655574800768062 /* README.md */; };
 /* End PBXBuildFile section */
 
@@ -29,16 +23,10 @@
 		AD0736ED264816C6004FE74F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		AD0736EF264816C6004FE74F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AD0736F2264816C6004FE74F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		AD0736F4264816C7004FE74F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD0736F7264816C7004FE74F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD0736F9264816C7004FE74F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD073729264831FB004FE74F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		AD09D77E2651CEC600768062 /* UIColor+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Utilities.swift"; sourceTree = "<group>"; };
-		AD09D7872653FF5F00768062 /* FMKeyboardStateListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMKeyboardStateListener.swift; sourceTree = "<group>"; };
-		AD09D7882653FF5F00768062 /* FMLoadingProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMLoadingProgressView.swift; sourceTree = "<group>"; };
-		AD09D7892653FF5F00768062 /* FMProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMProgressHUD.swift; sourceTree = "<group>"; };
-		AD09D78B2653FF5F00768062 /* FMLoadingSpinnerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMLoadingSpinnerView.swift; sourceTree = "<group>"; };
-		AD09D78C2653FF5F00768062 /* FMTouchBlockingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMTouchBlockingView.swift; sourceTree = "<group>"; };
 		AD09D7C62655574800768062 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -74,16 +62,14 @@
 		AD0736EA264816C6004FE74F /* FMProgressHUD-Demo */ = {
 			isa = PBXGroup;
 			children = (
-				AD09D7C62655574800768062 /* README.md */,
-				AD09D7862653FF5F00768062 /* FMProgressHUD */,
 				AD09D77E2651CEC600768062 /* UIColor+Utilities.swift */,
 				AD0736EB264816C6004FE74F /* AppDelegate.swift */,
 				AD0736ED264816C6004FE74F /* SceneDelegate.swift */,
 				AD0736EF264816C6004FE74F /* ViewController.swift */,
 				AD0736F1264816C6004FE74F /* Main.storyboard */,
-				AD0736F4264816C7004FE74F /* Assets.xcassets */,
 				AD0736F6264816C7004FE74F /* LaunchScreen.storyboard */,
 				AD0736F9264816C7004FE74F /* Info.plist */,
+				AD09D7C62655574800768062 /* README.md */,
 			);
 			path = "FMProgressHUD-Demo";
 			sourceTree = "<group>";
@@ -94,18 +80,6 @@
 				AD073729264831FB004FE74F /* QuartzCore.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		AD09D7862653FF5F00768062 /* FMProgressHUD */ = {
-			isa = PBXGroup;
-			children = (
-				AD09D7872653FF5F00768062 /* FMKeyboardStateListener.swift */,
-				AD09D7882653FF5F00768062 /* FMLoadingProgressView.swift */,
-				AD09D7892653FF5F00768062 /* FMProgressHUD.swift */,
-				AD09D78B2653FF5F00768062 /* FMLoadingSpinnerView.swift */,
-				AD09D78C2653FF5F00768062 /* FMTouchBlockingView.swift */,
-			);
-			path = FMProgressHUD;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,7 +144,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD0736F8264816C7004FE74F /* LaunchScreen.storyboard in Resources */,
-				AD0736F5264816C7004FE74F /* Assets.xcassets in Resources */,
 				AD09D7C72655574800768062 /* README.md in Resources */,
 				AD0736F3264816C6004FE74F /* Main.storyboard in Resources */,
 			);
@@ -183,14 +156,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD09D78D2653FF5F00768062 /* FMKeyboardStateListener.swift in Sources */,
-				AD09D7912653FF5F00768062 /* FMLoadingSpinnerView.swift in Sources */,
 				AD0736F0264816C6004FE74F /* ViewController.swift in Sources */,
-				AD09D78F2653FF5F00768062 /* FMProgressHUD.swift in Sources */,
-				AD09D7922653FF5F00768062 /* FMTouchBlockingView.swift in Sources */,
 				AD0736EC264816C6004FE74F /* AppDelegate.swift in Sources */,
 				AD0736EE264816C6004FE74F /* SceneDelegate.swift in Sources */,
-				AD09D78E2653FF5F00768062 /* FMLoadingProgressView.swift in Sources */,
 				AD09D77F2651CEC600768062 /* UIColor+Utilities.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,7 +304,6 @@
 		AD0736FD264816C7004FE74F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3N7XRF7M9C;
@@ -356,7 +323,6 @@
 		AD0736FE264816C7004FE74F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3N7XRF7M9C;

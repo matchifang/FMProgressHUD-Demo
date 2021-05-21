@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FMProgressHUD
 
 class ViewController: UIViewController {
     
@@ -125,7 +126,7 @@ class ViewController: UIViewController {
         let label = UILabel()
         label.text = "Style"
         
-        let control = UISegmentedControl(items: ["Light", "Dark"])
+        let control = UISegmentedControl(items: ["Light", "Dark", "Custom"])
         control.accessibilityIdentifier = "styleSegmentedControl"
         control.translatesAutoresizingMaskIntoConstraints = false
         control.addTarget(self, action: #selector(self.styleSegmentedControlValueChanged(_:)), for: .valueChanged)
@@ -235,7 +236,6 @@ class ViewController: UIViewController {
         return stackView
     }()
     
-    // https://nshipster.com/uistackview/
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -288,13 +288,25 @@ class ViewController: UIViewController {
     
     @objc func styleSegmentedControlValueChanged(_ sender: UISegmentedControl) {
         FMProgressHUD.style = sender.selectedSegmentIndex == 0 ? .light : .dark
+        switch sender.selectedSegmentIndex {
+        case 0: FMProgressHUD.style = .light
+        case 1: FMProgressHUD.style = .dark
+        case 2:
+            FMProgressHUD.style = .custom
+            FMProgressHUD.hudViewCustomBlurEffect = UIBlurEffect(style: .systemThickMaterialLight)
+//            FMProgressHUD.backgroundColor = UIColor.random.withAlphaComponent(0.4)
+            
+        
+        default: FMProgressHUD.style = .light
+        }
     }
     
     @objc func maskTypeSegmentedControlValueChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0: FMProgressHUD.maskType = .clear
         case 1: FMProgressHUD.maskType = .black
-        case 2: FMProgressHUD.maskType = .custom; FMProgressHUD.backgroundLayerColor = UIColor.random.withAlphaComponent(0.4)
+        case 2: FMProgressHUD.maskType = .custom
+            FMProgressHUD.backgroundLayerColor = UIColor.random.withAlphaComponent(0.4)
         default: FMProgressHUD.maskType = .clear
         }
     }
@@ -354,7 +366,7 @@ class ViewController: UIViewController {
         if progress <= 1 {
             perform(#selector(showWithProgressButtonTapped), with: nil, afterDelay: 0.1)
             FMProgressHUD.show(progress: progress, status: "Progress")
-            self.progress += 0.05
+            progress += 0.05
         } else {
             FMProgressHUD.dismiss()
             progress = 0
@@ -374,8 +386,8 @@ class ViewController: UIViewController {
     }
     
     @objc func showCustomImageButtonTapped() {
-        let image = UIImage(systemName: "person.fill.checkmark")!
-        FMProgressHUD.show(image: image, status: "Contact added")
+        let image = UIImage(systemName: "photo")!
+        FMProgressHUD.show(image: image, status: "Status")
     }
     
     @objc func dismissButtonTapped() {

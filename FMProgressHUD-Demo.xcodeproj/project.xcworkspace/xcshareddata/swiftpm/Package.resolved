@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "FMProgressHUD",
+        "repositoryURL": "https://github.com/matchifang/FMProgressHUD.git",
+        "state": {
+          "branch": null,
+          "revision": "c3a8e41605a775c98b86e636d26dccd19540767e",
+          "version": "0.0.1"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
