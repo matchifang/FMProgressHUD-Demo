@@ -287,17 +287,17 @@ class ViewController: UIViewController {
     }
     
     @objc func styleSegmentedControlValueChanged(_ sender: UISegmentedControl) {
-        FMProgressHUD.style = sender.selectedSegmentIndex == 0 ? .light : .dark
+        FMProgressHUD.hudStyle = sender.selectedSegmentIndex == 0 ? .light : .dark
         switch sender.selectedSegmentIndex {
-        case 0: FMProgressHUD.style = .light
-        case 1: FMProgressHUD.style = .dark
+        case 0: FMProgressHUD.hudStyle = .light
+        case 1: FMProgressHUD.hudStyle = .dark
         case 2:
-            FMProgressHUD.style = .custom
+            FMProgressHUD.hudStyle = .custom
             FMProgressHUD.hudViewCustomBlurEffect = UIBlurEffect(style: .systemThickMaterialLight)
-//            FMProgressHUD.backgroundColor = UIColor.random.withAlphaComponent(0.4)
-            
-        
-        default: FMProgressHUD.style = .light
+            FMProgressHUD.backgroundColor = UIColor.red.withAlphaComponent(0.3)
+            FMProgressHUD.hudForegroundColor = UIColor.blue
+            FMProgressHUD.hudBackgroundColor = UIColor.yellow
+        default: FMProgressHUD.hudStyle = .light
         }
     }
     
@@ -306,7 +306,7 @@ class ViewController: UIViewController {
         case 0: FMProgressHUD.maskType = .clear
         case 1: FMProgressHUD.maskType = .black
         case 2: FMProgressHUD.maskType = .custom
-            FMProgressHUD.backgroundLayerColor = UIColor.random.withAlphaComponent(0.4)
+            FMProgressHUD.backgroundColor = UIColor.random.withAlphaComponent(0.3)
         default: FMProgressHUD.maskType = .clear
         }
     }
